@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="header  container-fluid">
+    <button snap-toggle="left" type="button" class="navbar-left btn btn-default btn-lg hidden-xs">
+      <span class='fa fa-bars'></span>
+    </button>
+    <a class="logo" href="/"><img src="images/logo-56.png" /></a>
+    <button snap-toggle="right" type="button" class="navbar-right btn btn-default btn-lg hidden-xs">
+      <span class='fa fa-info'></span>
+    </button>
+    <p class="navbar-text navbar-right lead">{{listName}}</p>
+  </div>
+</nav>
+
+<ul class="feed">
+  <li ng-repeat="tweet in tweets">
+    <tweet json="tweet">
+    {{tweet}}
+  </li>
+</ul>
+

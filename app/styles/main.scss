@@ -1,0 +1,67 @@
+@import "variables";
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+$fa-font-path: "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/fonts";
+@import "font-awesome/scss/font-awesome";
+
+// bower:scss
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+
+@import "compass/css3/user-interface";
+
+@import "twitter";
+
+$dark: #292f33;
+
+body {
+  @include user-select('none');
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: $dark;
+  line-height: 18px;
+}
+
+.snap-drawer {
+  background-color: $dark;
+}
+
+.snap-content {
+  background-color: white;
+}
+
+.navbar-default {
+  padding-top: 4px;
+}
+
+.navbar {
+  
+  .logo {
+    padding-left: 2em;
+    @media screen and(max-width: 768px) {
+      padding-left: 0;
+    }
+  }
+
+  .btn {
+    margin-top: 5px;
+  }
+
+  .navbar-right:last-child {
+    margin-right: 3em;
+    
+    @media screen and (max-width: 768px) {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+  }
+
+}
+
+.header {
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
+}
