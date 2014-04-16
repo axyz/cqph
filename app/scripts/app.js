@@ -6,7 +6,8 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'snap'
+    'snap',
+    'btford.socket-io'
   ])
   .config(function ($routeProvider) {
     $routeProvider
