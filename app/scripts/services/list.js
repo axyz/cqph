@@ -19,10 +19,23 @@ var formatDate = function(date) {
 
 angular.module('cqphApp')
   .service('ListService', function ListService($http) {
+
     this.getLists = function(cb) {
       $http.get('http://centoquaranta.herokuapp.com/140/lists')
         .success(function(data) {
           cb(null, data)
+        })
+    }
+
+    this.getListMembers = function(list, cb) {
+      if(list === '' || list === undefined) cb ('list not defined', null)
+      $http.get('http://centoquaranta.herokuapp.com/140/lists/' + list + '/members')
+        .success(function(data) {
+          cb(null, data)
+        })
+        .error(function(data, status) {
+          console.log('http error '+ status)
+          cb('http error', null)
         })
     }
 
@@ -39,10 +52,10 @@ angular.module('cqphApp')
     }
 
     this.getName = function(slug, lists, cb) {
+      if(slug === '' || slug === undefined) cb(null, '')
       var name = lists.filter(function(el) {
         return el.slug === slug ? true : false
       })
-
       cb(null, name)
     }
 
