@@ -2,12 +2,12 @@
 
 angular.module('cqphApp')
 
-  .controller('MainCtrl', function ($scope, $routeParams,  ListService) {
-    var topic = $routeParams.topic ? $routeParams.topic : '<<<< >>>>'
+  .controller('MainCtrl', function ($scope, $routeParams,  ListService, TweetSocket) {
+    $scope.topic = $routeParams.topic ? $routeParams.topic : '<<<< >>>>'
 
     ListService.getLists(function(err, data) {
-      ListService.getName(topic, data, function(err, list) {
-        $scope.listName = (list[0] === undefined || list[0].name === '') ? topic : list[0].name
+      ListService.getName($scope.topic, data, function(err, list) {
+        $scope.listName = (list[0] === undefined || list[0].name === '') ? $scope.topic : list[0].name
       })
     })
 
@@ -15,28 +15,10 @@ angular.module('cqphApp')
       //$scope.tweets = data
     //})
 
-    ListService.getListMembers(topic, function(err, result) {
-      if(!err && result.users != undefined) {
-        $scope.topic = result.users.map(function(el) {
-          return el.id
-        })
-      }else {
-        $scope.topic = []
-      }
+    ListService.getMembers().then(function(data) {
+      $scope.members = data
     })
-
-    $scope.tweets = []
-    var ws = new WebSocket("ws://centoquaranta.herokuapp.com")
-    ws.onopen = function() {
-      console.log("socket opened")
-    }
-
-    ws.onmessage = function(message) {
-      var tweet = JSON.parse(message.data)
-      $scope.$apply(function() {
-        $scope.tweets.unshift(tweet)
-      })
-    }
+    $scope.tweets = TweetSocket.tweets
 
   });
 
