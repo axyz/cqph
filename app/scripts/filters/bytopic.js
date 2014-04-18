@@ -6,7 +6,7 @@ angular.module('cqphApp')
       if(window.location.hash === '#/') return input
       return input.filter(function(el) {
         if(topic === undefined) return true
-        return topic.indexOf(String(el.user.id)) != -1
+        return String(el.user.id) in topic
       })
     }
   })
