@@ -5,8 +5,8 @@ angular.module('cqphApp')
     ListService.getLists(function(err, data) {
       $scope.lists = data
 
-      $scope.isActive = function(path) {
-        return '#/topic/' + path === window.location.hash ? true : false
-      }
     })
+    $scope.isActive = function(path) {
+      return '#/topic/' + path === window.location.hash ? true : false
+    }
   });

@@ -1,11 +1,11 @@
 <div class="tweet">
   <div class="tweet-content">
-    <a target="_blank" href="https://twitter.com/{{json.user.screen_name}}">
-      <img class="avatar" src="{{json.user.profile_image_url}}">
-      <strong class="fullname">{{json.user.name}}</strong> 
-      <span class="username">@{{json.user.screen_name}}</span>
+    <a target="_blank" bo-href="'https://twitter.com/' + json.user.screen_name">
+      <img class="avatar" bo-src="json.user.profile_image_url">
+      <strong class="fullname" bo-text="json.user.name"></strong>
+      <span class="username" bo-text="'@' + json.user.screen_name"></span>
     </a>
-    <p id="tweet-{{json.id}}"></p>
-    <small><i>{{json.created_at}}</i></small>
+    <p bo-id="'tweet-' + json.id" bo-html="json.text"></p>
+    <small><i bo-text="json.created_at"></i></small>
   </div>
 </div>

@@ -9,12 +9,11 @@ angular.module('cqphApp')
       console.log("socket opened")
     }
 
-    ws.onmessage = function(message) {
-      var tweet = JSON.parse(message.data)
+    ws.onmessage = _.throttle(function(message) {
       $rootScope.$apply(function() {
-        tweets.unshift(tweet)
+        tweets.unshift(JSON.parse(message.data))
       })
-    }
+    }, 5000)
 
 
     // Public API here

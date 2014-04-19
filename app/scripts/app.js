@@ -6,7 +6,8 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'snap'
+    'snap',
+    'pasvaz.bindonce'
   ])
   .config(function ($routeProvider) {
     $routeProvider

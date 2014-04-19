@@ -25,9 +25,8 @@ angular.module('cqphApp')
         json: '='
       },
       link: function postLink($scope, element, attrs) {
-        $scope.json.text = urlify($scope.json.text)
-        $scope.json.created_at = formatDate($scope.json.created_at)
-        element.find('p').html($scope.json.text)
+        //$scope.json.text = urlify($scope.json.text)
+        //$scope.json.created_at = formatDate($scope.json.created_at)
       }
     };
   });

@@ -12,9 +12,8 @@
 </nav>
 
 <ul class="feed">
-  <li ng-repeat="tweet in tweets | byTopic:members[topic]">
+  <li bindonce ng-repeat="tweet in tweets | byTopic:members[topic]">
     <tweet json="tweet">
-    {{tweet}}
   </li>
 </ul>
 

@@ -1,28 +1,13 @@
 'use strict';
 
-var urlify = function(text) {
-  var ris = ""
-  ris = text.replace(/https?:\/\/[\w.?\-\+\/]*/g, '<a target="_blank" href ="$&">$&</a>')
-  ris = ris.replace(/#[\w\-\._]*/g, function(match, offset, string) {
-    return '<a target="_blank" class="hashtag" href ="https://twitter.com/search?q=%23' + match.slice(1) + '&src=hash">' + match + '</a>'
-  })
-  ris = ris.replace(/@[\w\-\._]*/g, function(match, offset, string) {
-    return '<a target="_blank" class="hashtag" href ="https://twitter.com/' + match.slice(1) + '">' + match + '</a>'
-  })
-  return ris
-}
-
-var formatDate = function(date) {
-  return date.slice(0,19) + ' ' + date.slice(26,30)
-}
-
-
 angular.module('cqphApp')
   .factory('ListService', function ListService($http, $q) {
 
     var members = {}
+    var lists
 
     var getLists = function(cb) {
+      if(lists != undefined) cb(null, lists)
       $http.get('http://centoquaranta.herokuapp.com/140/lists')
         .success(function(data) {
           cb(null, data)
